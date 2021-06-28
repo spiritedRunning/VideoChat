@@ -1,6 +1,5 @@
 package com.example.videochat;
 
-import android.media.projection.MediaProjection;
 import android.util.Log;
 
 import org.java_websocket.WebSocket;
@@ -77,7 +76,7 @@ public class SocketLive {
 
         @Override
         public void onMessage(WebSocket conn, ByteBuffer message) {
-            Log.d(TAG, "onMessage data: " + ByteUtil.byteBufferToString(message) + ", len = " + message.remaining());
+            Log.d(TAG, "onMessage data len = " + message.remaining());
 
             byte[] buf = new byte[message.remaining()];
             message.get(buf);
