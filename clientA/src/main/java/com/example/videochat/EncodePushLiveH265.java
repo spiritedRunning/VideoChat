@@ -63,6 +63,10 @@ public class EncodePushLiveH265 {
         if (socketLive != null) {
             socketLive.close();
         }
+        if (mediaCodec != null) {
+            mediaCodec.stop();
+            mediaCodec.release();
+        }
     }
 
     public int encodeFrame(byte[] input) {
@@ -119,7 +123,8 @@ public class EncodePushLiveH265 {
             final byte[] bytes = new byte[bufferInfo.size];
             bb.get(bytes);
             this.socketLive.sendData(bytes);
-            Log.v(TAG, "视频数据:  " + Arrays.toString(bytes));
+//            Log.v(TAG, "视频数据:  " + Arrays.toString(bytes));
+            Log.i(TAG, "encode p/b frame, len = " + bytes.length);
         }
     }
 

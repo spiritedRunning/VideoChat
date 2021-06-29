@@ -59,9 +59,14 @@ public class LocalSurfaceView extends SurfaceView implements SurfaceHolder.Callb
 
     @Override
     public void onPreviewFrame(byte[] bytes, Camera camera) {
-        if (encodePushLiveH265 != null) {
-            encodePushLiveH265.encodeFrame(bytes);
+        try {
+            if (encodePushLiveH265 != null) {
+                encodePushLiveH265.encodeFrame(bytes);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
 
         mCamera.addCallbackBuffer(bytes);
     }
